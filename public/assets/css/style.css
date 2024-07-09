@@ -1,0 +1,36 @@
+.logout-icon {
+    display: inline-block;
+    width: 40px; /* Taille de l'icône */
+    height: 40px; /* Taille de l'icône */
+    background-color: #f00; /* Couleur de fond, ici rouge */
+    border-radius: 50%; /* Pour rendre l'icône ronde */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff; /* Couleur de l'icône */
+    font-size: 20px; /* Taille de l'icône */
+    transition: background-color 0.3s ease;
+}
+
+.logout-icon:hover {
+    background-color: #c00; /* Couleur de fond au survol, ici un rouge plus foncé */
+}
+
+.custom-button {
+    font-size: 2em; /* Ajustez la taille comme vous le souhaitez */
+    padding: 0.5em 0.75em; /* Ajustez le padding pour augmenter la taille globale */
+    border: none;
+    color: orangered;
+    background: none;
+}
+.custom-button:hover {
+    color: #f00; /* Change la couleur au survol pour le bouton de suppression */
+}
+.button-edit{
+    color: #2BB930;
+    font-size: 2em;
+}
+.button-edit:hover{
+    color: #2BB930;
+}
+

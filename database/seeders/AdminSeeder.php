@@ -23,13 +23,27 @@ class AdminSeeder extends Seeder
         DB::table('users')->insert([
             'first_name' => 'Admin',
             'last_name' => 'User',
-            'role_id' => 1,
+            'usertype' => 'admin',
             'identity_reference' => $faker->unique()->bothify('ID-####'),
             'registration_number' => $faker->unique()->bothify('REG-####'),
             'sponsor_id' => null,
             'email' => 'admin@example.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'), // mot de passe par défaut
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'first_name' => 'Secretaire',
+            'last_name' => 'User',
+            'usertype' => 'user',
+            'identity_reference' => $faker->unique()->bothify('ID-####'),
+            'registration_number' => $faker->unique()->bothify('REG-####'),
+            'sponsor_id' => null,
+            'email' => 'secret@gmail.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('secretaire'), // mot de passe par défaut
             'created_at' => now(),
             'updated_at' => now(),
         ]);

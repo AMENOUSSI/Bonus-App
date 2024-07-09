@@ -9,28 +9,28 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (Auth::check())
-        {
-            $user = Auth::user();
+        if (Auth::check()) {
+            $userType = Auth::user()->usertype;
 
-            if ($user->is_admin)
-            {
-                return view('layouts.admin');
-            }
-            else
-            {
-                return view('layouts.user');
+            if ($userType === 'user') {
+                return view('dashboard');
+            } else if ($userType === 'admin') {
+                return view('layouts.admin.main');
             }
         }
-        else
-        {
-            return redirect()->back();
-        }
+
 
     }
+
 
     public function homepage()
     {
         return view('welcome');
     }
+
+    public function post()
+    {
+        return "Post";
+    }
+
 }

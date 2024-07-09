@@ -15,7 +15,7 @@ class BonusController extends Controller
      */
     public function index()
     {
-        $users = User::with('sales')->get();
+        $users = User::with('sales')->paginate(10);
         foreach ($users as $user) {
             $user->bonus = $user->calculateBonus();
         }

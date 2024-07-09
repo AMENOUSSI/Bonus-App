@@ -1,3 +1,4 @@
+{{--
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
 
@@ -528,3 +529,9 @@
 </body>
 
 </html>
+
+--}}
+
+<x-admin-layout>
+
+</x-admin-layout>

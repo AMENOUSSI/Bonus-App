@@ -1,3 +1,4 @@
+{{--
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -132,4 +133,76 @@
 
 
 
+
+--}}
+
+
+
+@extends('layouts.admin.main')
+
+@section('content')
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="card-title">List of Users</div>
+            <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Add New User</a>
+        </div>
+        <div class="card-body">
+            <table class="table table-head-bg-success">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Reference Identity</th>
+                    <th scope="col">Registration Number</th>
+                    <th scope="col">Telephone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Sponsor</th>
+                    <th scope="col">Actions</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                @forelse($users as $user)
+                    <tr>
+                        <td> {{$user->id}}</td>
+                        <td>{{ $user->first_name }} </td>
+
+                        <td>
+                            {{ $user->last_name }}
+                        </td>
+                        <td >
+                            {{$user->identity_reference}}
+                        </td>
+                        <td >
+                            {{$user->registration_number}}
+                        </td>
+                        <td>{{ $user->telephone }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>
+                            {{$user->sponsor ? $user->sponsor->first_name . ' ' . $user->sponsor->last_name : 'No Sponsor'}}
+                        </td>
+                        <td >
+                            <div class="button-edit">
+                                <a href="{{ route('users.show', ['user' => $user->id]) }}"><i class="fa fa-eye"></i></a>
+
+                            </div>
+                        </td>
+
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="9">
+                            No User enrolled yet !
+                        </td>
+                    </tr>
+                @endforelse
+
+
+                </tbody>
+            </table>
+            {{ $users->links() }}
+        </div>
+    </div>
+@endsection
 

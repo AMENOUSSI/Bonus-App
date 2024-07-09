@@ -1,3 +1,4 @@
+{{--
 
 
 <x-app-layout>
@@ -151,3 +152,106 @@
     </div>
 </x-app-layout>
 
+--}}
+
+@extends('layouts.admin.main')
+
+@section('content')
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div class="m-4 flex justify-center text-2xl font-semibold">
+                <h1 class="text-red-500">Détails de l'utilisateur : </h1>
+                <p class="text-black ml-3">{{ $user->first_name }} {{ $user->last_name }}</p>
+            </div>
+
+            <div class="flex justify-center text-black font-bold text-4xl m-4 underline">
+                <h2>Achats</h2>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-head-bg-success">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Produit</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Price</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse($user->sales as $sale)
+                    <tr>
+                        <td> {{$sale->id}}</td>
+                        <td> {{$sale->product->name}}</td>
+                        <td> {{$sale->product->price}}</td>
+                        <td> {{$sale->quantity}}</td>
+                        <td> {{$sale->total_price}}</td>
+                        <td>
+                            <a href="{{ route('admin.users.edit', $user) }}" class="button-edit"><i class="fa fa-pen-square  "></i>
+
+                            </a>
+                            <a href="{{ route('admin.sales.destroy', $user) }}" class="custom-button"
+                               onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
+                                <i class="fa fa-trash"></i>
+                            </a>
+
+                            <form id="delete-form-{{ $user->id }}" action="{{ route('sales.destroy', $user) }}" method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7">
+                            Pas de donnees
+                        </td>
+                    </tr>
+                @endforelse
+
+
+                </tbody>
+            </table>
+
+            <br><br>
+            <div class="m-4 flex justify-center text-green-400 text-4xl font-semibold underline">
+                <h2>Liste des affilies</h2>
+            </div>
+
+            <table class="table table-head-bg-primary mt-4">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Handle</th>
+                </tr>
+                </thead>
+                <tbody>
+                @forelse($user->downlines as $downline)
+                    <tr >
+                        <th >
+                            {{$downline->id}}
+                        </th>
+                        <td >{{ $downline->first_name }}</td>
+                        <td >{{ $downline->last_name }}</td>
+
+
+                    </tr>
+                @empty
+                    <tr >
+                        <td >
+                            Pas d'enregistrement
+                        </td>
+                    </tr>
+
+                @endforelse
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+@endsection

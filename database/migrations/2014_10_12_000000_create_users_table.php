@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->unsignedBigInteger('role_id')->default(1);
-/*            $table->string('is_admin')->default(0);*/
+            $table->string('usertype')->default('user');
             $table->string('identity_reference')->unique();
             $table->string('registration_number')->unique();
             $table->unsignedBigInteger('sponsor_id')->nullable();

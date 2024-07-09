@@ -44,8 +44,22 @@ class ProductController extends Controller
 
         Product::create($validatedData);
 
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+        /*if ($request->input('action') === 'save_and_continue') {
+            return redirect()->route('products.index')->with('success', 'Product added successfully');
+        } elseif ($request->input('action') === 'save_and_edit') {
+            $product = ;
+            return redirect()->route('admin.products.edit', $product->id)->with('success', 'Product added successfully');
+        }
+
+
+
+        return redirect()->back();*/
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
+
     }
+
+        //return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
+
 
     /**
      * Display the specified resource.
