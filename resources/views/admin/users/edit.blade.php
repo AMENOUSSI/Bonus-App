@@ -173,16 +173,29 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Add New User/Distributor</div>
+                            <div class="card-title">Modifier Infos Distributeur</div>
                         </div>
                         <div class="card-body">
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                             <form method="POST" action="{{ route('admin.users.update',$user) }}">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
-                                            <label for="first_name">First Name</label>
+                                            <label for="first_name">Nom</label>
                                             <input
                                                 type="text"
                                                 name="first_name"
@@ -193,7 +206,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="last_name">Last Name</label>
+                                            <label for="last_name">Prenom</label>
                                             <input
                                                 type="text"
                                                 name="last_name"
@@ -204,7 +217,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="identity_reference">Reference Identity</label>
+                                            <label for="identity_reference">Numero de la Piece D'Identite</label>
                                             <input
                                                 type="text"
                                                 name="identity_reference"
@@ -215,7 +228,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="registration_number">Registration Number</label>
+                                            <label for="registration_number">Matricule</label>
                                             <input
                                                 type="text"
                                                 name="registration_number"
@@ -253,7 +266,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="sponsor_id" >Sponsor</label>
+                                            <label for="sponsor_id" >Parain / Sponsor</label>
                                             <select name="sponsor_id" id="sponsor_id" class="form-control">
                                                 @foreach($users as $user)
                                                     <option value="{{ $user->id }}"   >{{ $user->first_name }}</option>
@@ -269,7 +282,7 @@
                                         <div class="card-action">
                                             <button type="submit" class="btn btn-success form-control mb-4">Update</button>
 
-                                            <button type="button" class="btn btn-danger form-control">Cancel</button>
+                                            <a href="{{ route('admin.users.index') }}" type="button" class="btn btn-danger form-control">Cancel</a>
                                         </div>
                                     </div>
                                 </div>

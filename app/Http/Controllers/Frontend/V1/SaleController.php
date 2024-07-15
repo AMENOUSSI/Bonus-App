@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\V1;
+namespace App\Http\Controllers\Frontend\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSaleRequest;
@@ -16,8 +16,8 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $sales = Sale::with(['user', 'product'])->simplePaginate(10);
-        return view('admin.sales.index', compact('sales'));
+        $sales = Sale::with(['user', 'product'])->paginate(10);
+        return view('frontend.sales.index', compact('sales'));
     }
 
     /**
@@ -28,7 +28,7 @@ class SaleController extends Controller
         $users = User::all();
         $products = Product::all();
 
-        return view('admin.sales.create', compact('users','products'));
+        return view('frontend.sales.create', compact('users','products'));
     }
 
     /**
@@ -42,20 +42,26 @@ class SaleController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $product = Product::findOrFail($validatedData['product_id']);
-        $totalPrice = $validatedData['quantity'] * $product->price;
-        $sale = Sale::create([
-            'user_id' => $validatedData['user_id'],
-            'product_id' => $validatedData['product_id'],
-            'quantity' => $validatedData['quantity'],
-            'total_price' => $totalPrice,
-        ]);
+        try {
+            $product = Product::findOrFail($validatedData['product_id']);
+            $totalPrice = $validatedData['quantity'] * $product->price;
+            $sale = Sale::create([
+                'user_id' => $validatedData['user_id'],
+                'product_id' => $validatedData['product_id'],
+                'quantity' => $validatedData['quantity'],
+                'total_price' => $totalPrice,
+            ]);
 
-        $period = now()->format('d/m/y H:i'); // Exemple de période à utiliser pour le calcul
-        CalculateBonuses::dispatch($period);
+            return redirect()->route('sales.index')->with('success', 'Vente enregistree avec succes!.');
+
+        }catch (\Exception $e){
+
+            return redirect()->back()->with('error', 'Enregistrement de la vente echoue:'. $e->getMessage());
+
+        }
+
 
         // Rediriger vers une page de succès ou une autre action appropriée
-        return redirect()->route('sales.index')->with('success', 'Sale created successfully.');
 
 
 
@@ -76,7 +82,7 @@ class SaleController extends Controller
     {
         $users = User::all();
         $products = Product::all();
-        return view('admin.sales.edit', compact('sale','users','products'));
+        return view('frontend.sales.edit', compact('sale','users','products'));
 
     }
 
@@ -103,7 +109,7 @@ class SaleController extends Controller
 
             // Calcul de la période, exemple basé sur l'année et le mois
             $period = now()->format('Y-m');
-            CalculateBonuses::dispatch($period);
+
 
             return redirect()->route('sales.index')->with('success', 'Sale updated successfully.');
         } catch (\Exception $e) {
@@ -118,10 +124,9 @@ class SaleController extends Controller
     {
         try {
             $sale->delete();
-            $period = now()->format('Y-m');
-            CalculateBonuses::dispatch($period);
 
-            return redirect()->route('sales.index')->with('success', 'Sale updated successfully.');
+
+            return redirect()->route('sales.index')->with('success', 'Vente supprime avec succes!.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while updating the sale: ' . $e->getMessage());
         }

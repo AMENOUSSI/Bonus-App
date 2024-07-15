@@ -41,20 +41,14 @@ class ProductController extends Controller
             'price' => 'required',
         ]);
 
+        try {
+            Product::create($validatedData);
 
-        Product::create($validatedData);
-
-        /*if ($request->input('action') === 'save_and_continue') {
-            return redirect()->route('products.index')->with('success', 'Product added successfully');
-        } elseif ($request->input('action') === 'save_and_edit') {
-            $product = ;
-            return redirect()->route('admin.products.edit', $product->id)->with('success', 'Product added successfully');
+            return redirect()->route('admin.products.index')->with('success', 'Produit ajoute avec Succes!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to add product:'. $e->getMessage());
         }
 
-
-
-        return redirect()->back();*/
-        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
 
     }
 
@@ -85,15 +79,25 @@ class ProductController extends Controller
             'price' => 'required',
         ]);
 
-        $product->update($request->all());
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        try {
+            $product->update($request->all());
+
+            return redirect()->route('admin.products.index')->with('success', 'Produit modifie avec succes!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to add product:'. $e->getMessage());
+        }
+
     }
 
     public function destroy(Product $product)
     {
-        $product->delete();
+        try {
+            $product->delete();
 
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+            return redirect()->route('admin.products.index')->with('success', 'Produit supprime avec succes.');
+        }catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to add product:'. $e->getMessage());
+        }
     }
 }

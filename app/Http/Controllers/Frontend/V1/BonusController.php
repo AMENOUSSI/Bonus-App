@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\V1;
+namespace App\Http\Controllers\Frontend\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBonusRequest;
@@ -15,59 +15,13 @@ class BonusController extends Controller
      */
     public function index()
     {
-        $users = User::with('sales')->get();
+        $users = User::with('sales')->paginate(10);
         foreach ($users as $user) {
             $user->bonus = $user->calculateBonus();
         }
 
-        return view('admin.bonus.index', compact('users'));
+        return view('frontend.bonus.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreBonusRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Bonus $bonus)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Bonus $bonus)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateBonusRequest $request, Bonus $bonus)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Bonus $bonus)
-    {
-        //
-    }
 }

@@ -42,20 +42,25 @@ class SaleController extends Controller
             'quantity' => 'required|integer|min:1',
         ]);
 
-        $product = Product::findOrFail($validatedData['product_id']);
-        $totalPrice = $validatedData['quantity'] * $product->price;
-        $sale = Sale::create([
-            'user_id' => $validatedData['user_id'],
-            'product_id' => $validatedData['product_id'],
-            'quantity' => $validatedData['quantity'],
-            'total_price' => $totalPrice,
-        ]);
+        try {
+            $product = Product::findOrFail($validatedData['product_id']);
+            $totalPrice = $validatedData['quantity'] * $product->price;
+            $sale = Sale::create([
+                'user_id' => $validatedData['user_id'],
+                'product_id' => $validatedData['product_id'],
+                'quantity' => $validatedData['quantity'],
+                'total_price' => $totalPrice,
+            ]);
 
-        $period = now()->format('d/m/y H:i'); // Exemple de période à utiliser pour le calcul
-        CalculateBonuses::dispatch($period);
+            // Rediriger vers une page de succès ou une autre action appropriée
+            return redirect()->route('admin.sales.index')->with('success', 'vente enregistree avec succes!.');
+        }catch (\Exception $e){
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de l\'enregistrement de cette vente: ' . $e->getMessage());
 
-        // Rediriger vers une page de succès ou une autre action appropriée
-        return redirect()->route('sales.index')->with('success', 'Sale created successfully.');
+        }
+
+
+
 
 
 
@@ -101,13 +106,9 @@ class SaleController extends Controller
                 'total_price' => $totalPrice,
             ]);
 
-            // Calcul de la période, exemple basé sur l'année et le mois
-            $period = now()->format('Y-m');
-            CalculateBonuses::dispatch($period);
-
-            return redirect()->route('sales.index')->with('success', 'Sale updated successfully.');
+            return redirect()->route('admin.sales.index')->with('success', 'Les informations sur cette vente ont ete modifiees avec succes.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'An error occurred while updating the sale: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la modification de cette vente: ' . $e->getMessage());
         }
     }
 
@@ -118,12 +119,10 @@ class SaleController extends Controller
     {
         try {
             $sale->delete();
-            $period = now()->format('Y-m');
-            CalculateBonuses::dispatch($period);
 
-            return redirect()->route('sales.index')->with('success', 'Sale updated successfully.');
+            return redirect()->route('admin.sales.index')->with('success', 'Cette vente a ete supprimee avec succes.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'An error occurred while updating the sale: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Une erreur est survenue lors de la suppression de cette vente.: ' . $e->getMessage());
         }
     }
 }

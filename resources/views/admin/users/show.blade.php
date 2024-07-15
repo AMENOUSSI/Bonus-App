@@ -157,19 +157,26 @@
 @extends('layouts.admin.main')
 
 @section('content')
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <div class="m-4 flex justify-center text-2xl font-semibold">
-                <h1 class="text-red-500">Détails de l'utilisateur : </h1>
-                <p class="text-black ml-3">{{ $user->first_name }} {{ $user->last_name }}</p>
+    <div class="card table-responsive">
+        <div class="card-header d-flex justify-content-between align-items-center" id="main">
+            <div class="m-4">
+                <h1 class="user-details">
+                    Détails de l'utilisateur :
+                    <span class="name">{{ $user->first_name }}</span>
+                    <span class="name">{{ $user->last_name }}</span>
+                </h1>
             </div>
-
-            <div class="flex justify-center text-black font-bold text-4xl m-4 underline">
+            <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">
+                &rightarrow;
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="purchases">
                 <h2>Achats</h2>
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-head-bg-success">
+            <table class="table table-head-bg-success table-responsive">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -177,7 +184,7 @@
                     <th scope="col">Unit Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Total Price</th>
-                    <th scope="col">Actions</th>
+                   {{-- <th scope="col">Actions</th>--}}
                 </tr>
                 </thead>
                 <tbody>
@@ -188,24 +195,24 @@
                         <td> {{$sale->product->price}}</td>
                         <td> {{$sale->quantity}}</td>
                         <td> {{$sale->total_price}}</td>
-                        <td>
-                            <a href="{{ route('admin.users.edit', $user) }}" class="button-edit"><i class="fa fa-pen-square  "></i>
+                        {{--<td>
+                            <div class="btns">
 
-                            </a>
-                            <a href="{{ route('admin.sales.destroy', $user) }}" class="custom-button"
-                               onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
-                                <i class="fa fa-trash"></i>
-                            </a>
+                                <a href="{{ route('admin.sales.destroy', $user) }}" class="user-delete"
+                                   onclick="event.preventDefault(); document.getElementById('delete-form-{{ $user->id }}').submit();">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                                <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
 
-                            <form id="delete-form-{{ $user->id }}" action="{{ route('sales.destroy', $user) }}" method="POST" style="display: none;">
-                                @csrf
-                                @method('DELETE')
-                            </form>
-                        </td>
+                            </div>
+                        </td>--}}
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="7">
+                        <td colspan="6">
                             Pas de donnees
                         </td>
                     </tr>
@@ -216,17 +223,17 @@
             </table>
 
             <br><br>
-            <div class="m-4 flex justify-center text-green-400 text-4xl font-semibold underline">
-                <h2>Liste des affilies</h2>
+            <div class="m-4 flex  text-green-400 text-4xl font-semibold underline">
+                <h2>Affiliations de <span style="color:#fd1cb6; font-weight: bold "> {{ $user->first_name }} {{ $user->last_name }}</span></h2>
             </div>
 
-            <table class="table table-head-bg-primary mt-4">
+            <table class="table table-head-bg-primary mt-4 table-responsive">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
-                    <th scope="col">Handle</th>
+
                 </tr>
                 </thead>
                 <tbody>
@@ -242,7 +249,7 @@
                     </tr>
                 @empty
                     <tr >
-                        <td >
+                        <td colspan="3">
                             Pas d'enregistrement
                         </td>
                     </tr>

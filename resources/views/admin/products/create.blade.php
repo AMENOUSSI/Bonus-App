@@ -1,7 +1,11 @@
 @extends('layouts.admin.main')
+
 @section('content')
     <div class="container">
         <div class="page-inner">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <a href="{{ route('admin.products.index') }}" class="btn btn-primary" id="back">Retour</a>
+            </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
@@ -9,6 +13,19 @@
                             <div class="card-title">Add New Product</div>
                         </div>
                         <div class="card-body">
+
+                            @if(session('success'))
+                                <div class="btn btn-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if(session('error'))
+                                <div class="btn btn-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                             <form method="POST" action="{{ route('admin.products.store') }}">
                                 @csrf
                                 <div class="row">
@@ -22,6 +39,9 @@
                                                 id="name"
                                                 placeholder="Enter Product name"
                                             />
+                                            @error('name')
+                                            <div id="alert-danger" >{{$message}}</div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="description">Description</label>
@@ -41,22 +61,16 @@
                                                 id="price"
                                                 placeholder="Product Price"
                                             />
+                                            @error('price')
+                                            <div id="alert-danger">{{$message}}</div>
+                                            @enderror
                                         </div>
-
-
-
                                     </div>
-                                    <div class="col-md-6 col-lg-4">
-                                        <!-- Vous pouvez ajouter d'autres champs ici -->
 
-                                    </div>
                                     <div class="col-md-8 col-lg-4">
-                                        <div class="card-action">
-                                            <button type="submit" class="btn btn-success form-control mb-4">Save </button>
-{{--
-                                            <button type="submit" class="btn btn-primary form-control mb-4">Save and Edit</button>
---}}
-                                            <button type="button" class="btn btn-danger form-control">Cancel</button>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-success form-control mb-4">Save</button>
+                                            <a href="{{ route('admin.products.index') }}" type="button" class="btn btn-danger form-control">Cancel</a>
                                         </div>
                                     </div>
                                 </div>

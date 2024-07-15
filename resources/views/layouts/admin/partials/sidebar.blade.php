@@ -41,12 +41,19 @@
                     <div class="collapse" id="dashboard">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="../demo1/index.html">
-                                    <span class="sub-item">Dashboard 1</span>
+                                <a href="{{route('admin.dashboard')}}">
+                                    <span class="sub-item">Dashboard1</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
+                </li>
+
+                <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+                    <h4 class="text-section">Differentes Pages</h4>
                 </li>
                 <li class="nav-item active">
                     <a
@@ -56,7 +63,7 @@
                         aria-expanded="false"
                     >
                         <i class="fas fa-user-friends"></i>
-                        <p>Users</p>
+                        <p>Distributeurs</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="dashboard">
@@ -74,28 +81,22 @@
                         </ul>
                     </div>
                 </li>
-                <li class="nav-section">
-                <span class="sidebar-mini-icon">
-                  <i class="fa fa-ellipsis-h"></i>
-                </span>
-                    <h4 class="text-section">Different Pages</h4>
-                </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#base">
                         <i class="fas fa-layer-group"></i>
-                        <p>Products</p>
+                        <p>Produits</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="base">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{route('admin.products.index')}}">
-                                    <span class="sub-item">Products Page</span>
+                                    <span class="sub-item">Consulter les Produits </span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{route('admin.products.create')}}">
-                                    <span class="sub-item">Add New Product</span>
+                                    <span class="sub-item">Ajouter Nouveau Produit</span>
                                 </a>
                             </li>
 
@@ -107,19 +108,19 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#tables">
                         <i class="fas fa-table"></i>
-                        <p>Sales</p>
+                        <p>Gestion Ventes</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="tables">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{route('admin.sales.index')}}">
-                                    <span class="sub-item">List of sales</span>
+                                    <span class="sub-item">Liste des Ventes effectuees</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{route('admin.sales.create')}}">
-                                    <span class="sub-item">New Sale</span>
+                                    <span class="sub-item">Enregistrer Nouvelle Vente</span>
                                 </a>
                             </li>
 
@@ -129,18 +130,29 @@
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#forms">
                         <i class="fas fa-pen-square"></i>
-                        <p>Bonuses</p>
+                        <p>Bonus</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="forms">
                         <ul class="nav nav-collapse">
                             <li>
                                 <a href="{{route('admin.bonuses.index')}}">
-                                    <span class="sub-item">Consult Bonuses</span>
+                                    <span class="sub-item">Consulter les Bonus</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
+
+                </li>
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="{{ route('logout') }}"
+                           onclick="event.preventDefault(); this.closest('form').submit();">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <p>Logout</p>
+                        </a>
+                    </form>
                 </li>
 
             </ul>

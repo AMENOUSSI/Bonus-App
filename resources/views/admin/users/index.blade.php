@@ -1,208 +1,127 @@
-{{--
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('User Page') }}
-        </h2>
-    </x-slot>
-    <div class="flex max-w-7xl mx-auto sm:px-6 lg:px-8  mt-12 justify-between items-center mb-4">
-        <h1 class="text-2xl font-bold">List of Users</h1>
-        <a href="{{ route('users.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-3xl">Add New User</a>
-    </div>
-    <div class="py-12">
+@extends('layouts.admin.main')
 
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+@section('content')
 
 
-                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-                        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-100 uppercase bg-blue-400 dark:bg-gray-700 dark:text-gray-400">
-                            <tr>
-                                <th  scope="col" class="px-6 py-3 ">
-                                    ID
-                                </th>
+    <div class="card mt-3" >
 
-                                <th scope="col" class="px-6 py-3">
-                                    First Name
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Last Name
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Reference Identity
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Registration Number
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Telephone
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Email
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Sponsor
-                                </th>
-
-                                <th scope="col" class="px-6 py-3">
-                                    Action
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            @forelse($users as $user)
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-black text-sm">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white bg-orange-100">
-                                        {{$user->id}}
-                                    </th>
-                                    <td class="px-6 py-4 ">
-                                        {{$user->first_name}}
-                                    </td>
-                                    <td class="px-6 py-4 ">
-                                        {{$user->last_name}}
-                                    </td>
-                                    <td class="px-6 py-4 ">
-                                        {{$user->identity_reference}}
-                                    </td>
-                                    <td class="px-6 py-4 ">
-                                        {{$user->registration_number}}
-                                    </td>
-                                    <td class="px-6 py-4 ">
-                                        {{$user->telephone}}
-                                    </td>
-                                    <td class="px-6 py-4 ">
-                                        {{$user->email}}
-                                    </td>
-                                    <td class="px-6 py-4 ">
-                                        {{$user->sponsor ? $user->sponsor->first_name . ' ' . $user->sponsor->last_name : 'No Sponsor'}}
-                                    </td>
-
-                                    <td class="py-2 px-4 flex">
-
-                                        <div class="flex  justify-evenly">
-
-                                            <a href="{{ route('users.show', ['user' => $user->id]) }} " class="text-orange-500 hover:text-orange-700 ml-2 text-4xl">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-                                                </svg>
-
-
-                                            </a>
-
-                                        </div>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-black text-sm">
-                                    <td class="px-6 py-4 " colspan="9">
-                                        Pas d'enregistrement
-                                    </td>
-                                </tr>
-
-                            @endforelse
-
-
-
-
-
-                            </tbody>
-                        </table>
-
-                    </div>
-
+        <div class="card-body">
+            <div class="table-responsive" id="main">
+                <div class="card-header d-flex justify-content-between align-items-center" >
+                    <div class="card-title">Liste des Distributeurs</div>
+                    <a href="{{ route('admin.users.create') }}" class="btn btn-primary btn-rounded">
+                        <i class="fa fa-plus-circle" id="icon-rounded"></i>
+                    </a>
 
                 </div>
+
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if(session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <table class="table table-head-bg-secondary">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Reference Identity</th>
+                        <th scope="col">Registration Number</th>
+                        <th scope="col">Telephone</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Sponsor</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @forelse($users as $user)
+                        <tr>
+                            <td>{{ $user->id }}</td>
+                            <td>{{ $user->first_name }}</td>
+                            <td>{{ $user->last_name }}</td>
+                            <td>{{ $user->identity_reference }}</td>
+                            <td>{{ $user->registration_number }}</td>
+                            <td>{{ $user->telephone }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>{{ $user->sponsor ? $user->sponsor->first_name . ' ' . $user->sponsor->last_name : 'No Sponsor' }}</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="{{ route('admin.users.edit', $user) }}" class="btn btn-sm btn-warning">
+                                        <i class="fa fa-pen"></i>Edit
+                                    </a>
+                                    <a href="{{ route('admin.users.show', ['user' => $user->id]) }}" class="btn btn-sm btn-info">
+                                        <i class="fa fa-eye"></i> View
+                                    </a>
+                                    <a href="{{ route('admin.users.destroy', $user) }}" class="btn btn-sm btn-danger"
+                                       onclick="event.preventDefault(); confirmDelete({{ $user->id }});">
+                                        <i class="fa fa-trash"></i> Delete
+                                    </a>
+                                </div>
+                                <form id="delete-form-{{ $user->id }}" action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="9" class="text-center">No User enrolled yet!</td>
+                        </tr>
+                    @endforelse
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-end">
+                {{ $users->links() }}
             </div>
         </div>
     </div>
 
-   <div class="justify-end">
-       {{ $users->links() }}
-   </div>
-</x-app-layout>
+    <script>
+        function confirmDelete(userId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-form-' + userId).submit();
+                }
+            })
+        }
 
+        // Check for success message to display
+        @if(session('success'))
+        Swal.fire({
+            title: 'Success!',
+            text: '{{ session('success') }}',
+            icon: 'success',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
+        @endif
 
-
-
-
-
-
-
-
-
-
-
---}}
-
-
-
-@extends('layouts.admin.main')
-
-@section('content')
-    <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <div class="card-title">List of Users</div>
-            <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Add New User</a>
-        </div>
-        <div class="card-body">
-            <table class="table table-head-bg-success">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Reference Identity</th>
-                    <th scope="col">Registration Number</th>
-                    <th scope="col">Telephone</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Sponsor</th>
-                    <th scope="col">Actions</th>
-
-                </tr>
-                </thead>
-                <tbody>
-                @forelse($users as $user)
-                    <tr>
-                        <td> {{$user->id}}</td>
-                        <td>{{ $user->first_name }} </td>
-
-                        <td>
-                            {{ $user->last_name }}
-                        </td>
-                        <td >
-                            {{$user->identity_reference}}
-                        </td>
-                        <td >
-                            {{$user->registration_number}}
-                        </td>
-                        <td>{{ $user->telephone }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            {{$user->sponsor ? $user->sponsor->first_name . ' ' . $user->sponsor->last_name : 'No Sponsor'}}
-                        </td>
-                        <td >
-                            <div class="button-edit">
-                                <a href="{{ route('users.show', ['user' => $user->id]) }}"><i class="fa fa-eye"></i></a>
-
-                            </div>
-                        </td>
-
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="9">
-                            No User enrolled yet !
-                        </td>
-                    </tr>
-                @endforelse
-
-
-                </tbody>
-            </table>
-            {{ $users->links() }}
-        </div>
-    </div>
+        // Check for error message to display
+        @if(session('error'))
+        Swal.fire({
+            title: 'Error!',
+            text: '{{ session('error') }}',
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK'
+        });
+        @endif
+    </script>
 @endsection
-

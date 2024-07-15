@@ -35,9 +35,9 @@ class AdminSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
-            'first_name' => 'Secretaire',
+            'first_name' => 'User Test',
             'last_name' => 'User',
-            'usertype' => 'user',
+            'usertype' => 'secretaire',
             'identity_reference' => $faker->unique()->bothify('ID-####'),
             'registration_number' => $faker->unique()->bothify('REG-####'),
             'sponsor_id' => null,
@@ -48,22 +48,6 @@ class AdminSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
-        // Création d'utilisateurs réguliers
-        /*foreach (range(1, 50) as $index) {
-            DB::table('users')->insert([
-                'first_name' => $faker->firstName,
-                'last_name' => $faker->lastName,
-                'role_id' => 0,
-                'identity_reference' => $faker->unique()->bothify('ID-####'),
-                'registration_number' => $faker->unique()->bothify('REG-####'),
-                'sponsor_id' => $faker->optional()->randomElement(DB::table('users')->pluck('id')->toArray()),
-                'email' => $faker->unique()->safeEmail,
-                'telephone' => $faker->phoneNumber,
-                'email_verified_at' => $faker->optional()->dateTimeThisDecade(),
-                'password' => Hash::make('password'), // mot de passe par défaut
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
-        }*/
+
     }
 }

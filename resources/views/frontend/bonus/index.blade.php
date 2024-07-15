@@ -2,10 +2,13 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Bonus Page') }}
+            {{ __('Page des Bonus') }}
         </h2>
     </x-slot>
+    <div class="flex max-w-7xl mx-auto sm:px-6 lg:px-8  mt-12 justify-center items-center mb-4">
+        <h1 class="text-2xl font-bold">Page de differents bonus calcules pour chaque Distributeur</h1>
 
+    </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -32,28 +35,26 @@
                                 </th>
 
                                 <th scope="col" class="px-6 py-3">
-                                    Bonus
+                                     Bonus gagne (FCFA)
                                 </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Action
-                                </th>
+
                             </tr>
                             </thead>
                             <tbody>
                             @forelse($users as $user)
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-black text-sm">
-                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white bg-orange-100">
+                                    <td scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white bg-orange-100">
                                         {{$user->id}}
-                                    </th>
-                                    <td>{{ $user->first_name }} </td>
+                                    </td >
+                                    <td class="px-6 py-4">{{ $user->first_name }} </td>
 
                                     <td class="px-6 py-4">
                                         {{ $user->last_name }}
                                     </td>
                                     <td class="px-6 py-4">{{ $user->email }}</td>
                                     <td class="px-6 py-4">{{ $user->telephone }}</td>
-                                    <th class="px-6 py-4 bg-rose-300">
-                                        {{$user->bonus}}
+                                    <th class="px-6 py-4 bg-rose-200">
+                                        {{$user->bonus}} (F CFA)
                                     </th>
                                 </tr>
                             @empty

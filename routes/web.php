@@ -1,7 +1,6 @@
 <?php
 
 
-use App\Http\Controllers\Admin\V1\AdminController;
 use App\Http\Controllers\Admin\V1\BonusController;
 use App\Http\Controllers\Admin\V1\ProductController;
 use App\Http\Controllers\Admin\V1\SaleController;
@@ -22,13 +21,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('login');
 });
-Route::get('/',[HomeController::class,'homepage'])->name('index');
 
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');*/
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,31 +33,35 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/home',[HomeController::class,'index'])->middleware(['auth'])->name('home');
 
-Route::get('/post',[HomeController::class,'post'])->middleware(['auth','admin'])->name('post');
 
 
-Route::middleware(['auth'])->group(function (){
-    Route::middleware(['admin'])->name('admin.')->prefix('admin')->group(callback: function (){
+// Routes Admin
+Route::middleware(['auth'])->group(function () {
+    Route::middleware(['admin'])
+        ->name('admin.')
+        ->prefix('admin')
+        ->namespace('App\Http\Controllers\Admin\V1')
+        ->group(function () {
 
-        Route::resource('/products', ProductController::class);
-        Route::resource('/sales', SaleController::class);
-        Route::resource('/bonuses', BonusController::class);
-        Route::resource('/users', UserController::class );
-        Route::get('/bonus', [BonusController::class, 'index'])->name('bonus.index');
-        Route::get('/users/{userId}/affiliations', [UserController::class,'show'])->name('users.sales');
-
-    });
+            Route::resource('/products', 'ProductController');
+            Route::resource('/sales', 'SaleController');
+            Route::resource('/bonuses', 'BonusController');
+            Route::resource('/users', 'UserController');
+            Route::get('/bonus', 'BonusController@index')->name('bonus.index');
+            Route::get('/users/{userId}/affiliations', 'UserController@show')->name('users.sales');
+            Route::get('/dashboard',[\App\Http\Controllers\DashboardController::class,'index'])->name('dashboard');
+        });
 });
 
-Route::middleware(['auth'])->group(function (){
-    Route::resource('/products', ProductController::class);
-    Route::resource('/sales', SaleController::class);
-    Route::resource('/bonuses', BonusController::class);
-    Route::resource('/users', UserController::class );
-    Route::get('/bonus', [BonusController::class, 'index'])->name('bonus.index');
-    Route::get('/users/{userId}/affiliations', [UserController::class,'show'])->name('users.sales');
+// Routes User
+Route::group(['namespace' => 'App\Http\Controllers\Frontend\V1', 'middleware' => ['auth','secretaire']], function () {
+    Route::resource('/products', \App\Http\Controllers\Frontend\V1\ProductController::class);
+    Route::resource('/sales', \App\Http\Controllers\Frontend\V1\SaleController::class);
+    Route::resource('/bonuses', \App\Http\Controllers\Frontend\V1\BonusController::class);
+    Route::resource('/users', \App\Http\Controllers\Frontend\V1\UserController::class);
+    Route::get('/bonus', [\App\Http\Controllers\Frontend\V1\BonusController::class, 'index'])->name('bonus.index');
+    Route::get('/users/{userId}/affiliations', [UserController::class, 'show'])->name('users.sales');
 });
-
 
 
 

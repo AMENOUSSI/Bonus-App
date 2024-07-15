@@ -70,6 +70,19 @@
                             <div class="card-title">Update Sale</div>
                         </div>
                         <div class="card-body">
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                             <form method="POST" action="{{ route('admin.sales.update',$sale) }}">
                                 @csrf
 
@@ -113,10 +126,7 @@
                                     <div class="col-md-8 col-lg-4">
                                         <div class="card-action">
                                             <button type="submit" class="btn btn-success form-control mb-4">Update</button>
-                                            {{--
-                                                                                        <button type="submit" class="btn btn-primary form-control mb-4">Save and Edit</button>
-                                            --}}
-                                            <button type="button" class="btn btn-danger form-control">Cancel</button>
+                                            <a  href="{{ route('admin.sales.index') }}" class="btn btn-danger form-control">Cancel</a>
                                         </div>
                                     </div>
                                 </div>

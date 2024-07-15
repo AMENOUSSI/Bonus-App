@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\V1;
+namespace App\Http\Controllers\Frontend\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
@@ -22,7 +22,7 @@ class UserController extends Controller
 
         return view('admin.users.index',compact('users'));*/
         $users = User::with('downlines', 'sales')->paginate(10);
-        return view('admin.users.index', compact('users'));
+        return view('frontend.users.index', compact('users'));
     }
 
     /**
@@ -31,7 +31,7 @@ class UserController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('admin.users.create', compact('users'));
+        return view('frontend.users.create', compact('users'));
     }
 
     /**
@@ -51,7 +51,7 @@ class UserController extends Controller
     public function show($userId)
     {
         $user = User::with('downlines', 'sales.product')->findOrFail($userId);
-        return view('admin.users.show', compact('user'));
+        return view('frontend.users.show', compact('user'));
     }
 
     /**
@@ -60,7 +60,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $users = User::all();
-        return view('admin.users.edit', compact('user','users'));
+        return view('frontend.users.edit', compact('user','users'));
     }
 
     /**
@@ -70,9 +70,9 @@ class UserController extends Controller
     {
         try {
             $user->update($request->validated());
-            return to_route('users.index');
+            return to_route('users.index')->with('success', 'Distributeur updated successfully.');
         }catch (Exception $e){
-        return redirect()->back()->with('error', 'Error deleting user: ' . $e->getMessage());
+        return redirect()->back()->with('error', 'Une erreur est survenue lors de la modification: ' . $e->getMessage());
         }
 
 
@@ -85,7 +85,7 @@ class UserController extends Controller
     {
         try {
             $user->delete();
-            return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+            return redirect()->route('users.index')->with('success', 'Distributeur supprime avec succes.');
         } catch (Exception $e) {
 
             return redirect()->back()->with('error', 'Error deleting user: ' . $e->getMessage());

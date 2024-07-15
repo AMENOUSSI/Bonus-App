@@ -27,10 +27,9 @@ class UpdateUserRequest extends FormRequest
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'sponsor_id' => 'nullable|exists:users,id',
-            'identity_reference' => 'required|string|max:255',
+            'identity_reference' => 'required|string|max:255'. $userId,
             'registration_number' => 'required|string|max:255|unique:users,registration_number,' . $userId,
-            'telephone' => 'required|string|max:15',
-            'email' => 'required|email|max:255|unique:users,email,' . $userId,
+
         ];
     }
 }

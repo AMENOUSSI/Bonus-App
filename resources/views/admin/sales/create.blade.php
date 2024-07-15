@@ -10,6 +10,19 @@
                             <div class="card-title">Add New Sale</div>
                         </div>
                         <div class="card-body">
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                             <form method="POST" action="{{ route('admin.sales.store') }}">
                                 @csrf
                                 <div class="row">
@@ -20,6 +33,10 @@
                                                 @foreach($users as $user)
                                                     <option value="{{ $user->id }}"  >{{ $user->first_name }}</option>
                                                 @endforeach
+
+                                                @error('user_id')
+                                                <div id="alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </select>
                                         </div>
 
@@ -30,6 +47,10 @@
                                                     <option value="{{ $product->id }}"  >{{ $product->name }}</option>
                                                 @endforeach
                                             </select>
+
+                                            @error('product_id')
+                                            <div id="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group">
@@ -41,20 +62,18 @@
                                                 id="quantity"
                                                 placeholder="Enter quantity"
                                             />
+                                            @error('quantity')
+                                            <div id="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                     </div>
-                                    <div class="col-md-6 col-lg-4">
-                                        <!-- Vous pouvez ajouter d'autres champs ici -->
 
-                                    </div>
                                     <div class="col-md-8 col-lg-4">
                                         <div class="card-action">
                                             <button type="submit" class="btn btn-success form-control mb-4">Save </button>
-                                            {{--
-                                                                                        <button type="submit" class="btn btn-primary form-control mb-4">Save and Edit</button>
-                                            --}}
-                                            <button type="button" class="btn btn-danger form-control">Cancel</button>
+
+                                            <a  href="{{ route('admin.sales.index') }}" class="btn btn-danger form-control">Cancel</a>
                                         </div>
                                     </div>
                                 </div>

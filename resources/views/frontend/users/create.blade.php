@@ -5,16 +5,19 @@
         </h2>
     </x-slot>
 
+    <div class="flex max-w-7xl mx-auto sm:px-6 lg:px-8  mt-12 justify-between items-center mb-4">
+
+        <a href="{{ route('users.index') }}" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md">Retour</a>
+        <h1 class="text-2xl font-bold">Page d'ajout d'un nouveau Distributeur</h1>
+    </div>
+
     <div class="py-12">
-        <div class="pl-6 m-4">
-            <a href="{{ route('products.index') }}" class="bg-indigo-500 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-lg">Back to Product List</a>
-        </div>
-        <div class="flex justify-center items-center mb-4">
-            <h1 class="text-2xl font-bold">Add a User</h1>
-        </div>
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+
+
+        <div class="max-w-full mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+
                     <div class="max-w-7xl mx-auto p-4 bg-slate-200 dark:bg-slate-900 rounded-lg">
                         <form method="POST" action="{{ route('users.store') }}">
                             @csrf
@@ -80,7 +83,7 @@
                                 </div>
                             </div>
                             <div class="mb-6">
-                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xl px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Store</button>
+                                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-xs[10] px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Enregistrer</button>
                             </div>
                         </form>
                     </div>

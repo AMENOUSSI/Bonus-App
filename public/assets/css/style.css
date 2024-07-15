@@ -1,3 +1,6 @@
+*{
+    transition: .5s ease;
+}
 .logout-icon {
     display: inline-block;
     width: 40px; /* Taille de l'icône */
@@ -16,21 +19,112 @@
     background-color: #c00; /* Couleur de fond au survol, ici un rouge plus foncé */
 }
 
-.custom-button {
-    font-size: 2em; /* Ajustez la taille comme vous le souhaitez */
-    padding: 0.5em 0.75em; /* Ajustez le padding pour augmenter la taille globale */
-    border: none;
-    color: orangered;
-    background: none;
-}
-.custom-button:hover {
-    color: #f00; /* Change la couleur au survol pour le bouton de suppression */
-}
-.button-edit{
-    color: #2BB930;
+#icon-rounded {
+    border-radius: 50%;
+     /* Change this to your desired background color */
+    padding: 10px; /* Adjust the padding as needed */
     font-size: 2em;
 }
-.button-edit:hover{
-    color: #2BB930;
+
+.btn-rounded {
+    border-radius: 50%; /* Rond */
+     /* Ajustez selon vos besoins */
+    display: flex;
+    background-color: #6861CE;
+    align-items: center;
+    justify-content: center;
+    width: 50px; /* Ajustez selon vos besoins */
+    height: 50px; /* Ajustez selon vos besoins */
 }
 
+.btns{
+    display: flex;
+    justify-items: center;
+    gap: 10px;
+}
+
+.btns a{
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    min-width: 50px;
+    font-size: 1.5rem;
+    color: #31ce36;
+    border: 2px solid #31ce36;
+    border-radius: 5px;
+}
+
+.btns a:hover{
+    background-color: #31ce36;
+    color: white;
+}
+
+.btns a:nth-child(2){
+    border-color: red;
+    color: red;
+}
+
+.btns a:nth-child(2):hover{
+    background-color: red;
+    color: white;
+}
+
+.btns a.btn-view{
+    color: dodgerblue;
+    border-color: dodgerblue;
+}
+
+.btns a.btn-view:hover{
+    color: white;
+    background-color: dodgerblue;
+}
+
+.btns a.user-delete{
+    border-color: red;
+    color: red;
+}
+
+.btns a.user-delete:hover{
+    background-color: red;
+    color: white;
+}
+
+/*#back{
+    background-color: #fd1cb6;
+    font-size: 1.5rem;
+    color: black;
+    margin-bottom: 5px;
+}*/
+
+/*couleur de details de user*/
+.user-details .name {
+    color: blue;
+}
+
+.purchases {
+    margin-top: 10px; /* Ajouter une marge pour séparer les sections */
+}
+
+.table-responsive-custom {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#main{
+    margin-top: 3rem;
+}
+
+
+/*Couleur de alert alert*/
+
+#alert-success{
+    color: #1dc023;
+    background-color: #639b65;
+}
+
+#alert-danger{
+    color: #ee3434;
+
+}

@@ -102,6 +102,19 @@
                             <div class="card-title">Add New User/Distributor</div>
                         </div>
                         <div class="card-body">
+
+                            @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+
+                            @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                             <form method="POST" action="{{ route('admin.users.store') }}">
                                 @csrf
                                 <div class="row">
@@ -115,6 +128,9 @@
                                                 id="first_name"
                                                 placeholder="Enter first name"
                                             />
+                                            @error('first_name')
+                                            <div id="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group">
@@ -126,6 +142,9 @@
                                                 id="last_name"
                                                 placeholder="Enter last name"
                                             />
+                                            @error('last_name')
+                                            <div id="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group">
@@ -137,6 +156,9 @@
                                                 id="identity_reference"
                                                 placeholder="Identity"
                                             />
+                                            @error('identity_reference')
+                                            <div id="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group">
@@ -148,6 +170,9 @@
                                                 id="registration_number"
                                                 placeholder="Enter registration number"
                                             />
+                                            @error('registration_number')
+                                            <div id="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
 
@@ -164,6 +189,9 @@
                                                 id="telephone"
                                                 placeholder="Enter telephone"
                                             />
+                                            @error('telephone')
+                                            <div id="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group">
@@ -175,6 +203,9 @@
                                                 id="email"
                                                 placeholder="Enter email"
                                             />
+                                            @error('email')
+                                            <div id="alert-danger">{{ $message }}</div>
+                                            @enderror
                                         </div>
 
                                         <div class="form-group">
@@ -193,10 +224,8 @@
                                     <div class="col-md-8 col-lg-4">
                                         <div class="card-action">
                                             <button type="submit" class="btn btn-success form-control mb-4">Save </button>
-                                            {{--
-                                                                                        <button type="submit" class="btn btn-primary form-control mb-4">Save and Edit</button>
-                                            --}}
-                                            <button type="button" class="btn btn-danger form-control">Cancel</button>
+
+                                            <a href="{{ route('admin.users.index') }}"  class="btn btn-danger form-control">Cancel</a>
                                         </div>
                                     </div>
                                 </div>

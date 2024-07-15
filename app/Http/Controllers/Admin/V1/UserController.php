@@ -40,9 +40,16 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $request->validated();
-        User::create($request->all());
+        try {
+            User::create($request->all());
 
-        return to_route('users.index');
+            return to_route('admin.users.index')->with('success', 'Ce distributeur est enregistre avec succes!.');
+
+        }catch (Exception $e){
+        return redirect()->back()->with('error', 'Error deleting user: ' . $e->getMessage());
+}
+
+
     }
 
     /**
@@ -50,6 +57,7 @@ class UserController extends Controller
      */
     public function show($userId)
     {
+
         $user = User::with('downlines', 'sales.product')->findOrFail($userId);
         return view('admin.users.show', compact('user'));
     }
@@ -70,7 +78,7 @@ class UserController extends Controller
     {
         try {
             $user->update($request->validated());
-            return to_route('users.index');
+            return to_route('admin.users.index')->with('success', 'Ce distributeur a ete modifie avec succes!.');;
         }catch (Exception $e){
         return redirect()->back()->with('error', 'Error deleting user: ' . $e->getMessage());
         }
@@ -85,7 +93,7 @@ class UserController extends Controller
     {
         try {
             $user->delete();
-            return redirect()->route('users.index')->with('success', 'User deleted successfully.');
+            return redirect()->route('admin.users.index')->with('success', 'Ce distributeur a ete supprime.');
         } catch (Exception $e) {
 
             return redirect()->back()->with('error', 'Error deleting user: ' . $e->getMessage());

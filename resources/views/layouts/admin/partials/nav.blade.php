@@ -36,7 +36,6 @@
                     <div class="dropdown-user-scroll scrollbar-outer">
                         <li>
                             <div class="user-box">
-
                                 <div class="u-text">
                                     <h4>{{ Auth::user()->first_name }}</h4>
                                     <p class="text-muted">{{ Auth::user()->email }}</p>

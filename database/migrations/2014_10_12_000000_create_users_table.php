@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('usertype')->default('user');
+            $table->string('usertype')->default('secretaire');
             $table->string('identity_reference')->unique();
             $table->string('registration_number')->unique();
             $table->unsignedBigInteger('sponsor_id')->nullable();
-            $table->string('email')->unique();
+            $table->string('email')->unique()->nullable();
             $table->string('telephone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();

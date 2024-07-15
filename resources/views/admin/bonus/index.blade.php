@@ -83,12 +83,15 @@
 
 @section('content')
     <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <div class="card-title">Bonuses Page</div>
-        </div>
+
         <div class="card-body">
-            <table class="table table-head-bg-success">
-                <thead>
+            <div class="table-responsive" id="main">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div class="card-title">Bonuses Page</div>
+                </div>
+            </div>
+            <table class="table table-head-bg-secondary table-responsive" >
+                <thead >
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">First Name</th>
@@ -98,7 +101,7 @@
                     <th scope="col">Bonus Amount</th>
 
                 </tr>
-                </thead>
+                </thead >
                 <tbody>
                 @forelse($users as $user)
                     <tr>
@@ -110,7 +113,7 @@
                         </td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->telephone }}</td>
-                        <th style="font-size:large; color: red;"  >
+                        <th style="font-size:large; color: #d63384; "  >
                             {{$user->bonus }}  (F CFA)
                         </th>
 
