@@ -13,19 +13,19 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="text-white text-xl hover:text-gray-100">
-                        {{ __('Dashboard') }}
+                        {{ __('Tableau de bord') }}
                     </x-nav-link>
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="text-white text-xl hover:text-gray-100">
-                        {{ __('Users') }}
+                        {{ __('Distributeurs') }}
                     </x-nav-link>
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" class="text-white text-xl hover:text-gray-100">
-                        {{ __('Products') }}
+                        {{ __('Produits') }}
                     </x-nav-link>
                     <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.index')" class="text-white text-xl hover:text-gray-100">
-                        {{ __('Sales') }}
+                        {{ __('Ventes') }}
                     </x-nav-link>
                     <x-nav-link :href="route('bonuses.index')" :active="request()->routeIs('bonuses.index')" class="text-white text-xl hover:text-gray-100">
-                        {{ __('Bonuses') }}
+                        {{ __('Bonus') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -74,38 +74,38 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{ 'block': open, 'hidden': ! open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')" class="text-white">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
+            <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="text-white">
                 {{ __('Distributeurs / Users') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+            <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" class="text-white">
                 {{ __('Produits') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('sales.index')" :active="request()->routeIs('sales')">
+            <x-responsive-nav-link :href="route('sales.index')" :active="request()->routeIs('sales')" class="text-white">
                 {{ __('Ventes') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('bonuses.index')" :active="request()->routeIs('bonuses.index')">
+            <x-responsive-nav-link :href="route('bonuses.index')" :active="request()->routeIs('bonuses.index')" class="text-white">
                 {{ __('Bonus') }}
             </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
+            <div class="px-4" >
                 <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-400">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-sm text-gray-400 text-gray-900">{{ Auth::user()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
+                <x-responsive-nav-link :href="route('profile.edit')" class="text-white">
                     {{ __('Profile') }}
                 </x-responsive-nav-link>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-responsive-nav-link :href="route('logout')"
-                                           onclick="event.preventDefault(); this.closest('form').submit();">
+                                           onclick="event.preventDefault(); this.closest('form').submit();" class="text-white">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
