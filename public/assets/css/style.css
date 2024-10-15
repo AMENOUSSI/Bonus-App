@@ -128,3 +128,9 @@
     color: #ee3434;
 
 }
+
+
+.rounded-image {
+    border-radius: 50%;
+    background-color: #5c636a;
+}

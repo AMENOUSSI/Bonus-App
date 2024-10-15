@@ -2,12 +2,12 @@
 @extends('layouts.admin.main')
 
 @section('content')
-    <div class="card mt-3">
+    <div class="container">
 
         <div class="card-body">
-            <div class="table-responsive" id="main">
+            <div class="table-responsive mb-4" id="main">
                 <div class="card-header d-flex justify-content-between align-items-center" >
-                    <div class="card-title">List of sales</div>
+                    <div class="card-title">Liste des ventes</div>
                     <a href="{{ route('admin.sales.create') }}" class="btn btn-primary btn-rounded"><i class="fa fa-plus-circle" id="icon-rounded"></i></a>
                 </div>
             </div>

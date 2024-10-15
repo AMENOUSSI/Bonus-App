@@ -6,11 +6,11 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <a href="{{ route('admin.products.index') }}" class="btn btn-primary" id="back">Retour</a>
             </div>
-            <div class="row">
+            <div class="row mt-4">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Add New Product</div>
+                            <div class="card-title">Ajouter un Produit</div>
                         </div>
                         <div class="card-body">
 

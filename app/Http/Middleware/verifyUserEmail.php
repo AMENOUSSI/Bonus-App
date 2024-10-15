@@ -5,10 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
-class Admin
+class verifyUserEmail
 {
     /**
      * Handle an incoming request.
@@ -17,17 +16,10 @@ class Admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        /*if (!auth()->check() || !auth()->user()->is_admin){
-            Log::warning('Accès refusé pour l\'utilisateur : ', ['user' => auth()->user()]);
-
-            abort(403);
-        }*/
-
-        if(Auth()->user()->usertype == 'admin' || Auth()->user()->usertype == 'user')
-        {
-            return $next($request);
+        if (Auth::check() && !Auth::user()->hasVerifiedEmail()) {
+            return redirect()->route('email.verify')->withErrors(['message' => 'Vous devez vérifier votre adresse email pour accéder à cette page.']);
         }
-        abort(401);
 
+        return $next($request);
     }
 }

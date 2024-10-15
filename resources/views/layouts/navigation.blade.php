@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-blue-600 text-white shadow-md">
+<nav x-data="{ open: false }" class="bg-blue-800 hover:bg-blue-900 text-white shadow-md">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -12,19 +12,19 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="text-white text-xl hover:text-gray-100">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="text-white text-md hover:text-orange-500">
                         {{ __('Tableau de bord') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="text-white text-xl hover:text-gray-100">
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="text-white text-md hover:text-orange-500">
                         {{ __('Distributeurs') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" class="text-white text-xl hover:text-gray-100">
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')" class="text-white text-md hover:text-orange-500">
                         {{ __('Produits') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.index')" class="text-white text-xl hover:text-gray-100">
+                    <x-nav-link :href="route('sales.index')" :active="request()->routeIs('sales.index')" class="text-white text-md hover:text-orange-500">
                         {{ __('Ventes') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('bonuses.index')" :active="request()->routeIs('bonuses.index')" class="text-white text-xl hover:text-gray-100">
+                    <x-nav-link :href="route('bonuses.index')" :active="request()->routeIs('bonuses.index')" class="text-white text-md hover:text-orange-500">
                         {{ __('Bonus') }}
                     </x-nav-link>
                 </div>

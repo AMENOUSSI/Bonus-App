@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\V1\SaleController;
 use App\Http\Controllers\Admin\V1\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VerificationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,7 +26,7 @@ Route::get('/', function () {
 });
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','verifiedEmail'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -33,6 +34,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/home',[HomeController::class,'index'])->middleware(['auth'])->name('home');
 
+Route::get('verify/{code}', [VerificationController::class, 'verify'])->name('email.verify');
 
 
 // Routes Admin

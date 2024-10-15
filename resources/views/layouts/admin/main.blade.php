@@ -37,7 +37,7 @@
             <!-- End Navbar -->
         </div>
 
-        <div class="table-responsive" >
+        <div class="container table-responsive" >
             @yield('content')
         </div>
 
@@ -48,6 +48,8 @@
 @include('layouts.admin.partials.script')
 
 @include('sweetalert::alert')
+
+
 </body>
 
 </html>

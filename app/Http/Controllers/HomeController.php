@@ -12,11 +12,11 @@ class HomeController extends Controller
         if (Auth::check()) {
             $userType = Auth::user()->usertype;
 
-            if ($userType === 'secretaire') {
-                return view('dashboard');
-            } else if ($userType === 'admin') {
-                return view('layouts.admin.main');
-            }
+           if ($userType === 'admin') {
+                return view('admin.index');
+           }
+
+           return view('dashboard');
         }
 
 
@@ -28,9 +28,6 @@ class HomeController extends Controller
         return view('welcome');
     }
 
-    public function post()
-    {
-        return "Post";
-    }
+
 
 }

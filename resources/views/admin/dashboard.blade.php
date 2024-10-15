@@ -1,130 +1,132 @@
 @extends('layouts.admin.main')
 
 @section('content')
-    <div>
-        <h3 class="fw-bold mb-3" style="margin-top: 5rem">Dashboard</h3>
+    <div class="container">
+        <div>
+            <h3 class="fw-bold mb-3" style="margin-top: 5rem">Dashboard</h3>
 
-    </div>
+        </div>
 
 
-    <div class="row">
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-primary bubble-shadow-small">
-                                <i class="fas fa-users"></i>
+        <div class="row">
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-primary bubble-shadow-small">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Total Users</p>
+                                    <h4 class="card-title">{{ $totalUsers }}</h4>
+                                </div>
                             </div>
                         </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Total Users</p>
-                                <h4 class="card-title">{{ $totalUsers }}</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-info bubble-shadow-small">
+                                    <i class="fas fa-boxes"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Total Products</p>
+                                    <h4 class="card-title">{{ $totalProducts }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-success bubble-shadow-small">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Total Sales</p>
+                                    <h4 class="card-title">${{ $totalSales }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="card card-stats card-round">
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-icon">
+                                <div class="icon-big text-center icon-secondary bubble-shadow-small">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                            </div>
+                            <div class="col col-stats ms-3 ms-sm-0">
+                                <div class="numbers">
+                                    <p class="card-category">Total Bonuses</p>
+                                    <h4 class="card-title">${{ $totalBonus }}</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-info bubble-shadow-small">
-                                <i class="fas fa-boxes"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Total Products</p>
-                                <h4 class="card-title">{{ $totalProducts }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-success bubble-shadow-small">
-                                <i class="fas fa-dollar-sign"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Total Sales</p>
-                                <h4 class="card-title">${{ $totalSales }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-6 col-md-3">
-            <div class="card card-stats card-round">
-                <div class="card-body">
-                    <div class="row align-items-center">
-                        <div class="col-icon">
-                            <div class="icon-big text-center icon-secondary bubble-shadow-small">
-                                <i class="fas fa-gift"></i>
-                            </div>
-                        </div>
-                        <div class="col col-stats ms-3 ms-sm-0">
-                            <div class="numbers">
-                                <p class="card-category">Total Bonuses</p>
-                                <h4 class="card-title">${{ $totalBonus }}</h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Display user bonuses -->
-    <div class="">
+        <!-- Display user bonuses -->
         <div class="">
             <div class="">
                 <div class="">
-                    <h4 class="card-title">User Bonuses</h4>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>User</th>
-                            <th>Total Bonus</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($users as $user)
+                    <div class="">
+                        <h4 class="card-title">User Bonuses</h4>
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                                <td>${{ $user->bonus }}</td>
+                                <th>User</th>
+                                <th>Total Bonus</th>
                             </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            @foreach($users as $user)
+                                <tr>
+                                    <td>{{ $user->first_name }} {{ $user->last_name }}</td>
+                                    <td>${{ $user->bonus }}</td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6">
-            <div class="">
-                <h4 class="card-title">Monthly Sales</h4>
-                <canvas id="monthlySalesChart" class=""></canvas>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="">
+                    <h4 class="card-title">Monthly Sales</h4>
+                    <canvas id="monthlySalesChart" class=""></canvas>
+                </div>
             </div>
-        </div>
 
-        <div class="col-md-6">
-            <div class="">
-                <h4 class="card-title">User Bonuses</h4>
-                <canvas id="userBonusesChart" class=""></canvas>
+            <div class="col-md-6">
+                <div class="">
+                    <h4 class="card-title">User Bonuses</h4>
+                    <canvas id="userBonusesChart" class=""></canvas>
+                </div>
             </div>
         </div>
     </div>

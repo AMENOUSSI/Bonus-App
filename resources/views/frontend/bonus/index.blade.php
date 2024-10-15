@@ -15,7 +15,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-100 uppercase bg-blue-400 dark:bg-gray-700 dark:text-gray-400">
+                            <thead class="bg-blue-800 text-gray-100 dark:bg-blue-900 dark:text-white">
                             <tr>
                                 <th  scope="col" class="px-6 py-3 ">
                                     ID
@@ -54,7 +54,7 @@
                                     <td class="px-6 py-4">{{ $user->email }}</td>
                                     <td class="px-6 py-4">{{ $user->telephone }}</td>
                                     <th class="px-6 py-4 bg-rose-200">
-                                        {{$user->bonus}} (F CFA)
+                                        {{$user->bonus}}
                                     </th>
                                 </tr>
                             @empty

@@ -63,19 +63,14 @@
                         aria-expanded="false"
                     >
                         <i class="fas fa-user-friends"></i>
-                        <p>Distributeurs</p>
+                        <p>Gestion des clients</p>
                         <span class="caret"></span>
                     </a>
                     <div class="collapse" id="dashboard">
                         <ul class="nav nav-collapse">
                             <li>
-                                <a href="{{route('admin.users.index')}}">
-                                    <span class="sub-item">Consult User list</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('admin.users.create')}}">
-                                    <span class="sub-item">Enrol New User / Distributor</span>
+                                <a href="#">
+                                    <span class="sub-item">Creer un compte</span>
                                 </a>
                             </li>
                         </ul>

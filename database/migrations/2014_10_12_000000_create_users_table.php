@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('telephone')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->string('verification_code')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
 
@@ -36,6 +38,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
-    }
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('verification_code');
+        });    }
 };

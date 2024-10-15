@@ -26,7 +26,7 @@ class StoreUserRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'identity_reference' => 'required|string|max:255',
             'registration_number' => 'required|string|max:255',
-            'telephone' => 'required|string|max:20',
+            'telephone' => 'required|nullable|string|min:8|max:20',
 
             'sponsor_id' => 'nullable|exists:users,id',
         ];

@@ -7,7 +7,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <div class="card-title">Add New Sale</div>
+                            <div class="card-title">Ajouter une nouvelle vente</div>
                         </div>
                         <div class="card-body">
 
