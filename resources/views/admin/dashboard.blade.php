@@ -59,7 +59,7 @@
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
                                     <p class="card-category">Total Sales</p>
-                                    <h4 class="card-title">${{ $totalSales }}</h4>
+                                    <h4 class="card-title">{{ $totalSales }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                             <div class="col col-stats ms-3 ms-sm-0">
                                 <div class="numbers">
                                     <p class="card-category">Total Bonuses</p>
-                                    <h4 class="card-title">${{ $totalBonus }}</h4>
+                                    <h4 class="card-title">{{ $totalBonus }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -97,14 +97,14 @@
                             <thead>
                             <tr>
                                 <th>User</th>
-                                <th>Total Bonus</th>
+                                <th>Total Bonus (F CFA)</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($users as $user)
                                 <tr>
                                     <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                                    <td>${{ $user->bonus }}</td>
+                                    <td>{{ $user->bonus }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

@@ -56,7 +56,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 // Routes User
-Route::group(['namespace' => 'App\Http\Controllers\Frontend\V1', 'middleware' => ['auth','secretaire']], function () {
+Route::group(['namespace' => 'App\Http\Controllers\Frontend\V1', 'middleware' => ['auth','secretaire','check']], function () {
     Route::resource('/products', \App\Http\Controllers\Frontend\V1\ProductController::class);
     Route::resource('/sales', \App\Http\Controllers\Frontend\V1\SaleController::class);
     Route::resource('/bonuses', \App\Http\Controllers\Frontend\V1\BonusController::class);

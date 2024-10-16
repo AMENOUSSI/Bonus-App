@@ -15,8 +15,8 @@
                 <!-- Logo Header -->
                 <div class="logo-header" data-background-color="dark">
                     <a href="{{ route('home') }}" class="logo">
-                        <img src="{{ asset('assets/img/kaiadmin/logo_light.svg') }}" alt="navbar brand"
-                             class="navbar-brand" height="20" />
+                        <img src="{{ asset('assets/img/kaiadmin/logo_appli-bonus.jpg') }}" alt="LWP Light World Promotion Logo" class="img-fluid">
+
                     </a>
                     <div class="nav-toggle">
                         <button class="btn btn-toggle toggle-sidebar">

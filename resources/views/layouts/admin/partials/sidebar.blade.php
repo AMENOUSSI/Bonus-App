@@ -4,10 +4,11 @@
         <div class="logo-header" data-background-color="dark">
             <a href="index.html" class="logo">
                 <img
-                    src="{{ asset('assets/img/kaiadmin/logo_light.svg') }}"
+                    src="{{ asset('assets/img/kaiadmin/logo_appli-bonus.jpg') }}"
                     alt="navbar brand"
                     class="navbar-brand"
-                    height="20"
+                    height="60"
+                    width="200"
                 />
             </a>
             <div class="nav-toggle">
@@ -62,19 +63,9 @@
                         class="collapsed"
                         aria-expanded="false"
                     >
-                        <i class="fas fa-user-friends"></i>
-                        <p>Gestion des clients</p>
-                        <span class="caret"></span>
+
                     </a>
-                    <div class="collapse" id="dashboard">
-                        <ul class="nav nav-collapse">
-                            <li>
-                                <a href="#">
-                                    <span class="sub-item">Creer un compte</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+
                 </li>
                 <li class="nav-item">
                     <a data-bs-toggle="collapse" href="#base">

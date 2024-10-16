@@ -92,6 +92,9 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        if (!auth()->user()->can('delete produits')) {
+            abort(403, 'Vous n\'avez pas l\'autorisation de supprimer cet utilisateur.');
+        }
         try {
             $product->delete();
 

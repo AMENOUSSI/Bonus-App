@@ -91,6 +91,9 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if (!auth()->user()->can('delete user')) {
+            abort(403, 'Vous n\'avez pas l\'autorisation de supprimer cet utilisateur.');
+        }
         try {
             $user->delete();
             return redirect()->route('admin.users.index')->with('success', 'Ce distributeur a ete supprime.');

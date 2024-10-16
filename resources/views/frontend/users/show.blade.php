@@ -22,7 +22,7 @@
                             <h2>Achats</h2>
                         </div>
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-100 uppercase bg-blue-400 dark:bg-gray-700 dark:text-gray-400">
+                            <thead class="text-xs text-gray-100 uppercase bg-blue-800 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th  scope="col" class="px-6 py-3 ">
                                     ID
@@ -93,7 +93,7 @@
                             <h2>Liste des affilies</h2>
                         </div>
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-100 uppercase bg-blue-400 dark:bg-gray-700 dark:text-gray-400">
+                            <thead class="text-xs text-gray-100 uppercase bg-blue-800 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th  scope="col" class="px-6 py-3 ">
                                     ID

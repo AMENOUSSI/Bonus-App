@@ -1,13 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+
 
     <div class="py-12">
         <div class="pl-6 m-4">
-            <a href="{{ route('users.index') }}" class="bg-red-400 hover:bg-rose-500 text-white font-semibold py-2 px-4 rounded-lg text-2xl">
+            <a href="{{ route('users.index') }}" class="bg-orange-400 hover:bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg text-2xl">
                 &leftarrow;
             </a>
         </div>

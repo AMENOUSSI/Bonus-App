@@ -13,7 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="text-white text-md hover:text-orange-500">
-                        {{ __('Tableau de bord') }}
+                        {{ __('Accueil') }}
                     </x-nav-link>
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')" class="text-white text-md hover:text-orange-500">
                         {{ __('Distributeurs') }}

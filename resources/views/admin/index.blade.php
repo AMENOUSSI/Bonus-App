@@ -1,23 +1,18 @@
 @extends('layouts.admin.main')
 
-
 @section('content')
-
-    <div class="card ">
-
-        <div class="">
-            <div class="table-responsive" id="main">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <img src="{{ asset('assets/img/kaiadmin/logo_appli-bonus.jpg') }}" alt="" >
-                    <div>
-                        <h1>Bienvenue sur <mark>LWP Light World Promotion!!!</mark></h1>
-                    </div>
+    <section class="hero bg-info text-white">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <h1 class="display-4">Bienvenue sur LWP Light World Promotion en tant que , <strong style="color: #b31389">{{ $user->first_name }} </strong>!!!</h1>
+                    <p class="lead mb-4">
+                        LWP Light World Promotion est une plateforme dédiée à [Insérer une brève description engageante ici]. Profitez de nombreux avantages tels que [mentionner les avantages principaux].
+                    </p>
+                    <a href="#" class="btn btn-light btn-lg">En savoir plus</a>
                 </div>
+
             </div>
-
-
         </div>
-    </div>
+    </section>
 @endsection
-
-

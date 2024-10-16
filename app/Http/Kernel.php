@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\Admin;
+use App\Http\Middleware\CheckSecretairePermissions;
 use App\Http\Middleware\SecretMiddleware;
 use App\Http\Middleware\verifyUserEmail;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -70,5 +71,7 @@ class Kernel extends HttpKernel
         'admin' => Admin::class,
         'secretaire' => SecretMiddleware::class,
         'verifiedEmail'=>verifyUserEmail::class,
+        'check'=>CheckSecretairePermissions::class,
+
     ];
 }

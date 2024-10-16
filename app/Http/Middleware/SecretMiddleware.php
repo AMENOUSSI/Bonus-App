@@ -16,7 +16,7 @@ class SecretMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth()->check() && (Auth()->user()->usertype == 'secretaire' || Auth()->user()->usertype == 'admin')) {
+        if (Auth()->check() && (Auth()->user()->usertype == 'secretaire' || Auth()->user()->usertype == 'admin') || Auth()->user()->usertype == 'user') {
             return $next($request);
         }
         abort(401);

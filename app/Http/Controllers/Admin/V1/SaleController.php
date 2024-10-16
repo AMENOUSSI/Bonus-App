@@ -117,6 +117,9 @@ class SaleController extends Controller
      */
     public function destroy(Sale $sale)
     {
+        if (!auth()->user()->can('delete vente')) {
+            abort(403, 'Vous n\'avez pas l\'autorisation de supprimer cet utilisateur.');
+        }
         try {
             $sale->delete();
 
